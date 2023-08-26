@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SumOfThreeCubesSolver": {
+      "commandName": "Project",
+      "commandLineArgs": "\"use brute force:true\" \"show annullings:false\" \"start value:0\" \"end value:5\" \"lower bound:0\" \"upper bound:500\""
+    }
+  }
+}
