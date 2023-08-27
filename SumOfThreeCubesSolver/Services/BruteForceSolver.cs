@@ -9,6 +9,8 @@ namespace SumOfThreeCubesSolver.Solvers
         private Arguments _arguments;
         private readonly SolutionsPrinter _solutionsPrinter;
 
+        long processedCombinations = 0;
+
         public BruteForceSolver(SolutionsPrinter solutionsPrinter)
         {
             _solutionsPrinter = solutionsPrinter;
@@ -29,7 +31,7 @@ namespace SumOfThreeCubesSolver.Solvers
 
             string path = _solutionsPrinter.Print(dictionary, _arguments);
             
-            Console.WriteLine($"Done. See\r\n{path}");
+            Console.WriteLine($"Done. Number of processed combinations: {processedCombinations}. Output:\r\n{path}");
         }
 
         private int ResolveRangeSize()
@@ -61,6 +63,7 @@ namespace SumOfThreeCubesSolver.Solvers
                             dictionary.Add(result.Sum, list);
                         }
                     }
+                    processedCombinations++;
                 }
             }
         }
@@ -68,6 +71,9 @@ namespace SumOfThreeCubesSolver.Solvers
         // Does the combination contain values where the sum of two of them is zero, thus cancelling on another out? F.i: -9³ + 2³ + 9³
         private bool IsAnnullingSolution(List<int> combination)
         {
+            if(combination.Where(x => x == 0).Count() >=2)
+                return false;
+
             return combination[0] + combination[1] == 0 ||
                    combination[0] + combination[2] == 0 ||
                    combination[1] + combination[2] == 0;
@@ -75,7 +81,11 @@ namespace SumOfThreeCubesSolver.Solvers
 
         private bool IsPrimitiveCombination(List<int> combination)
         {
-            return Math.Abs(combination.Aggregate(GCD)) == 1;
+            if (combination.Where(x => x == 0).Count() >= 2)
+                return true;
+
+            var x = Math.Abs(combination.Aggregate(GCD));
+            return Math.Abs(combination.Aggregate(GCD)) <= 1;
         }
 
         private int GCD(int a, int b)
