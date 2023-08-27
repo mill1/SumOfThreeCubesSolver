@@ -27,8 +27,8 @@ SumOfThreeCubesSolver.exe "solver:brute force solver" "start value:-5" "end valu
 None
 
 
-
 ***1**
-The are two reasons a solution cannot be found:
+
+There are two reasons a solution cannot be found:
 1. No solution exists for n equals 4 or 5 modulo 9
 2. The range defined by "start value" and "end value" is too small to find (a) solution(s).
