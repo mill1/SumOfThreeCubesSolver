@@ -3,7 +3,7 @@ Small C# console application that lists primitive solutions for the sums of thre
 
 See https://en.wikipedia.org/wiki/Sums_of_three_cubes and https://en.wikipedia.org/wiki/Diophantine_equation for details.
 
-The program generates a text file containing the solutions and is set up in a way to easily add other solvers.
+The program generates a text file containing the solutions and is set up to easily add other solvers.
 
 Inspired by the repo https://github.com/fleschutz/LSS of Markus Fleschutz.
 
