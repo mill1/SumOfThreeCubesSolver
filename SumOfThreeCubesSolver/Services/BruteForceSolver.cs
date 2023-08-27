@@ -52,7 +52,7 @@ namespace SumOfThreeCubesSolver.Solvers
                 {
                     var result = new SumOfThreeCubesResult(combination[0], combination[1], combination[2]);
 
-                    if (result.Sum >= _arguments.PrintFrom && result.Sum <= _arguments.PrintUpTo)
+                    if (result.Sum >= _arguments.PrintFrom && result.Sum <= _arguments.PrintUntil)
                     {
                         List<SumOfThreeCubesResult> list;
                         if (dictionary.TryGetValue(result.Sum, out list))

@@ -3,7 +3,7 @@ Small C# console application that lists primitive solutions for the sums of thre
 
 See https://en.wikipedia.org/wiki/Sums_of_three_cubes and https://en.wikipedia.org/wiki/Diophantine_equation for details.
 
-The program generates a text file containing the solutions and is set up to easily add other solvers.
+The program generates a text file containing the solutions and is set up in order to easily add other solvers.
 
 Inspired by the repo https://github.com/fleschutz/LSS of Markus Fleschutz.
 
@@ -14,14 +14,14 @@ The program makes use of the following optional arguments:
 * "end value", int, value up to which the three elements will be cubed. Default: 10
 * "process annulling solutions", bool, skip combinations where the sum of two of the three elements is zero. F.i: -9³ + 2³ + 9³. Default: false
 * "print from", int, value from which the solutions will be printed. Default: sum of three cubes of "start value" (e.g. -375 in case of -5)
-* "print up to", int, value up to which the solutions will be printed. Default: sum of three cubes of "end value"
+* "print until", int, value up to which the solutions will be printed. Default: sum of three cubes of "end value"
 * "print no solutions", skip printing values for which there are no solutions. Default: true ***1**
 * "path", string, output folder for the text file. Default: _MyDocuments_ folder
 
 Command using all arguments:
 
 `
-SumOfThreeCubesSolver.exe "solver:brute force solver" "start value:-5" "end value:5" "process annulling solutions:false" "print from:0" "print up to:1000" "print no solutions:true" "path:C:\Docs"
+SumOfThreeCubesSolver.exe "solver:brute force solver" "start value:-5" "end value:5" "process annulling solutions:false" "print from:0" "print until:1000" "print no solutions:true" "path:C:\Docs"
 `
 ## Release notes
 None
