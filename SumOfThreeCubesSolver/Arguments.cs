@@ -2,7 +2,7 @@
 {
     public class Arguments
     {
-        public bool UseBruteForce { get; set; }
+        public string Solver { get; set; }
         public int StartValue { get; set; }
         public int EndValue { get; set; }
         public int PrintFrom { get; set; }

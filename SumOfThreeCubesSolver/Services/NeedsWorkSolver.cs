@@ -82,7 +82,7 @@ namespace SumOfThreeCubesSolver.Solvers
 
         private IEnumerable<string> ResolveSolutions(int value)
         {
-            CalculateSolution();
+            CalculateSolutions();
             return GetSolutions(value);
         }
 
@@ -112,7 +112,7 @@ namespace SumOfThreeCubesSolver.Solvers
             }
         }
 
-        private static void CalculateSolution()
+        private static void CalculateSolutions()
         {
             Random r = new Random();
             int rInt = r.Next(2, 5);
