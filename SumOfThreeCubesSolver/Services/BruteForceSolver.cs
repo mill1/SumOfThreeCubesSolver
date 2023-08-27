@@ -24,14 +24,16 @@ namespace SumOfThreeCubesSolver.Solvers
 
             Dictionary<double, List<SumOfThreeCubesResult>> dictionary = new();
 
-            Console.WriteLine("Calculating...");
+            Console.WriteLine($"[{DateTime.Now}] Calculating...");
 
             foreach (IEnumerable<int> permutation in permutations)
                 ProcessCombination(dictionary, permutation.ToList());
 
+            Console.WriteLine($"[{DateTime.Now}] Printing...");
+
             string path = _solutionsPrinter.Print(dictionary, _arguments);
             
-            Console.WriteLine($"Done. Number of processed combinations: {processedCombinations}. Output:\r\n{path}");
+            Console.WriteLine($"[{DateTime.Now}] Done. Number of processed combinations: {processedCombinations}. Output:\r\n{path}");
         }
 
         private int ResolveRangeSize()
