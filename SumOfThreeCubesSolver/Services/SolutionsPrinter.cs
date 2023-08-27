@@ -33,7 +33,8 @@ namespace SumOfThreeCubesSolver.Services
             {
                 if (printNoSolutions)
                 {
-                    if (value % 9 == 4 || value % 9 == 5)
+                    int modulo = value % 9;
+                    if (new int[] {4, 5, -4, -5}.Any(i => i == modulo))
                         outputFile.WriteLine($"{value} = no solution possible");
                     else
                         outputFile.WriteLine($"{value} = no solution found");
