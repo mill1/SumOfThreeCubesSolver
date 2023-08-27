@@ -10,43 +10,48 @@ namespace SumOfThreeCubesSolver
     {
         static void Main(string[] args)
         {
-            var arguments = ResolveArguments(args);
-            IServiceCollection services = BuildServiceCollection(arguments.UseBruteForce);
-
-            using (ServiceProvider sp = services.BuildServiceProvider())
+            try
             {
-                var r = sp.GetRequiredService<IRunnable>();
+                var arguments = ResolveArguments(args);
+                IServiceCollection services = BuildServiceCollection(arguments.Solver);
 
-                try
+                using (ServiceProvider sp = services.BuildServiceProvider())
                 {
+                    var r = sp.GetRequiredService<IRunnable>();
                     r.Run(arguments);
                 }
-                catch (Exception e)
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine(e.Message);
-                    Console.ResetColor();
-                }
+            }
+            catch (Exception e)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(e.Message);
+                Console.ResetColor();
             }
         }
 
-        private static IServiceCollection BuildServiceCollection(bool useBruteForce)
+        private static IServiceCollection BuildServiceCollection(string solver)
         {
             IServiceCollection services = new ServiceCollection();
 
             services.AddScoped<SolutionsPrinter>();
-
-            if (useBruteForce)
-                services.AddScoped<IRunnable, BruteForceSolver>();
-            else
-                services.AddScoped<IRunnable, NeedsWorkSolver>();
+            
+            switch (solver)
+            {
+                case "brute force solver":
+                    services.AddScoped<IRunnable, BruteForceSolver>();
+                    break;
+                case "needs work solver":
+                    services.AddScoped<IRunnable, NeedsWorkSolver>();
+                    break;
+                default:
+                    throw new NotImplementedException($"Solver is not implemented: '{solver}'");
+            }
 
             return services;
         }
 
         private static Arguments ResolveArguments(string[] args)
-        {
-            var useBruteForce = ResolveArgument(args, "use brute force");
+        {            
             int startValue = ResolveValue(args, "start value", -10);
             var endValue = ResolveValue(args, "end value", 10);
             var printFrom = ResolveArgument(args, "print from");
@@ -56,7 +61,7 @@ namespace SumOfThreeCubesSolver
 
             return new Arguments
             {
-                UseBruteForce = useBruteForce == null ? true : bool.Parse(useBruteForce),
+                Solver = ResolveArgument(args, "solver") ?? "brute force solver",
                 StartValue = startValue,
                 EndValue = endValue,
                 PrintFrom = printFrom == null ? ResolveLimit(startValue) : int.Parse(printFrom),
