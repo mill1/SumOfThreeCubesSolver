@@ -22,11 +22,13 @@ namespace SumOfThreeCubesSolver.Solvers
 
             Dictionary<double, List<SumOfThreeCubesResult>> dictionary = new();
 
+            Console.WriteLine("Calculating...");
+
             foreach (IEnumerable<int> permutation in permutations)
                 ProcessCombination(dictionary, permutation.ToList());
 
             string path = _solutionsPrinter.Print(dictionary, _arguments);
-
+            
             Console.WriteLine($"Done. See\r\n{path}");
         }
 

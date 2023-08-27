@@ -13,12 +13,12 @@ namespace SumOfThreeCubesSolver.Services
                 outputFile.WriteLine($"# Primitive solutions for x³ + y³ + z³ = n (for {_arguments.LowerBound} <= n <= {_arguments.Upperbound} and {_arguments.StartValue} <= x,y,z <= {_arguments.EndValue})");
 
                 for (int value = _arguments.LowerBound; value <= _arguments.Upperbound; value++)
-                    PrintSolutionsOfValue(dictionary, outputFile, value, _arguments.PrintNoSolutions);
+                    PrintSolutions(dictionary, outputFile, value, _arguments.PrintNoSolutions);
             }
             return path;
         }
 
-        private void PrintSolutionsOfValue(Dictionary<double, List<SumOfThreeCubesResult>> dictionary, StreamWriter outputFile, int value, bool printNoSolutions)
+        private void PrintSolutions(Dictionary<double, List<SumOfThreeCubesResult>> dictionary, StreamWriter outputFile, int value, bool printNoSolutions)
         {
             List<SumOfThreeCubesResult> solutions;
 
@@ -51,6 +51,20 @@ namespace SumOfThreeCubesSolver.Services
                     text += ", " + solution.ToString();
             }
             return text;
+        }
+
+        public string Print(string directory, int value, IEnumerable<string> solutions)
+        {
+            var path = Path.Combine(directory, $"SumOfThreeCubesSolutions_for_{value}.txt");
+
+            using (StreamWriter outputFile = new StreamWriter(path))
+            {
+                outputFile.WriteLine($"# Primitive solution(s) for x³ + y³ + z³ = {value}:");
+
+                foreach (var solution in solutions)
+                    outputFile.WriteLine(solution);
+            }
+            return path;
         }
     }
 }
