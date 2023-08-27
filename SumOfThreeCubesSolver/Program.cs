@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SumOfThreeCubesSolver.Interfaces;
+using SumOfThreeCubesSolver.Models;
 using SumOfThreeCubesSolver.Services;
 using SumOfThreeCubesSolver.Solvers;
 
@@ -46,21 +47,21 @@ namespace SumOfThreeCubesSolver
         private static Arguments ResolveArguments(string[] args)
         {
             var useBruteForce = ResolveArgument(args, "use brute force");
-            var startValue = ResolveArgument(args, "start value");
-            var endValue = ResolveArgument(args, "end value");
-            var lowerBound = ResolveArgument(args, "lower bound");
-            var upperBound = ResolveArgument(args, "upper bound");
-            var handleAnnullingSolutions = ResolveArgument(args, "process annulling solutions");
+            int startValue = ResolveValue(args, "start value", -10);
+            var endValue = ResolveValue(args, "end value", 10);
+            var printFrom = ResolveArgument(args, "print from");
+            var printUpTo = ResolveArgument(args, "print up to");
+            var processAnnullingSolutions = ResolveArgument(args, "process annulling solutions");
             var printNoSolutions = ResolveArgument(args, "print no solutions");
 
             return new Arguments
             {
                 UseBruteForce = useBruteForce == null ? true : bool.Parse(useBruteForce),
-                StartValue = startValue == null ? -100 : int.Parse(startValue),
-                EndValue = endValue == null ? 100 : int.Parse(endValue),
-                LowerBound = lowerBound == null ? 0 : int.Parse(lowerBound),
-                Upperbound = upperBound == null ? 1000 : int.Parse(upperBound),
-                HandleAnnullingSolutions = handleAnnullingSolutions == null ? false : bool.Parse(handleAnnullingSolutions),
+                StartValue = startValue,
+                EndValue = endValue,
+                PrintFrom = printFrom == null ? ResolveLimit(startValue) : int.Parse(printFrom),
+                PrintUpTo = printUpTo == null ? ResolveLimit(endValue) : int.Parse(printUpTo),
+                ProcessAnnullingSolutions = processAnnullingSolutions == null ? false : bool.Parse(processAnnullingSolutions),
                 PrintNoSolutions = printNoSolutions == null ? true : bool.Parse(printNoSolutions),
                 Path = ResolveArgument(args, "path") ?? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
             };
@@ -76,6 +77,17 @@ namespace SumOfThreeCubesSolver
                 return arg.First().Substring(startIndex);
             }
             return null;
+        }
+
+        private static int ResolveValue(string[] args, string value, int defaultValue)
+        {
+            string stringValue = ResolveArgument(args, value);
+            return stringValue == null ? defaultValue : int.Parse(stringValue);
+        }
+
+        private static int ResolveLimit(int startValue)
+        {
+            return (int)new SumOfThreeCubesResult(startValue, startValue, startValue).Sum;
         }
     }
 }

@@ -75,19 +75,19 @@ namespace SumOfThreeCubesSolver.Solvers
 
         private void CalculateSolutions(int value)
         {
-            var solutions = GetSolutions(value);
+            var solutions = ResolveSolutions(value);
             var path = _solutionsPrinter.Print(_arguments.Path, value, solutions);
             ConsoleWriteLine($"Done. See\r\n{path}");
         }
 
+        private IEnumerable<string> ResolveSolutions(int value)
+        {
+            CalculateSolution();
+            return GetSolutions(value);
+        }
+
         private IEnumerable<string> GetSolutions(int value)
         {
-            for (int i = 1; i <= 3; i++)
-            {
-                ConsoleWriteLine($"calculating.{new string('.', i)}");
-                Thread.Sleep(2000);
-            }
-            
             switch (value)
             {
                 case 3:
@@ -109,6 +109,18 @@ namespace SumOfThreeCubesSolver.Solvers
                     };
                 default:
                     throw new ArgumentException();
+            }
+        }
+
+        private static void CalculateSolution()
+        {
+            Random r = new Random();
+            int rInt = r.Next(2, 5);
+
+            for (int i = 1; i <= rInt; i++)
+            {
+                ConsoleWriteLine($"calculating.{new string('.', i)}");
+                Thread.Sleep(2000);
             }
         }
     }
