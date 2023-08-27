@@ -15,7 +15,17 @@ namespace SumOfThreeCubesSolver
             using (ServiceProvider sp = services.BuildServiceProvider())
             {
                 var r = sp.GetRequiredService<IRunnable>();
-                r.Run(arguments);
+
+                try
+                {
+                    r.Run(arguments);
+                }
+                catch (Exception e)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine(e.Message);
+                    Console.ResetColor();
+                }
             }
         }
 
@@ -40,7 +50,6 @@ namespace SumOfThreeCubesSolver
             var endValue = ResolveArgument(args, "end value");
             var lowerBound = ResolveArgument(args, "lower bound");
             var upperBound = ResolveArgument(args, "upper bound");
-
             var handleAnnullingSolutions = ResolveArgument(args, "process annulling solutions");
             var printNoSolutions = ResolveArgument(args, "print no solutions");
 
