@@ -42,7 +42,7 @@ namespace SumOfThreeCubesSolver.Solvers
 
         private void ProcessCombination(Dictionary<double, List<SumOfThreeCubesResult>> dictionary, List<int> combination)
         {
-            bool proceed = _arguments.HandleAnnullingSolutions ? true : !IsAnnullingSolution(combination);
+            bool proceed = _arguments.ProcessAnnullingSolutions ? true : !IsAnnullingSolution(combination);
 
             if (proceed)
             {
@@ -50,7 +50,7 @@ namespace SumOfThreeCubesSolver.Solvers
                 {
                     var result = new SumOfThreeCubesResult(combination[0], combination[1], combination[2]);
 
-                    if (result.Sum >= _arguments.LowerBound && result.Sum <= _arguments.Upperbound)
+                    if (result.Sum >= _arguments.PrintFrom && result.Sum <= _arguments.PrintUpTo)
                     {
                         List<SumOfThreeCubesResult> list;
                         if (dictionary.TryGetValue(result.Sum, out list))
