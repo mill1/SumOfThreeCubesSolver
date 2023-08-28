@@ -29,8 +29,6 @@ namespace SumOfThreeCubesSolver.Solvers
             foreach (IEnumerable<int> permutation in permutations)
                 ProcessCombination(dictionary, permutation.ToList());
 
-            Console.WriteLine($"[{DateTime.Now}] Printing...");
-
             string path = _solutionsPrinter.Print(dictionary, _arguments);
             
             Console.WriteLine($"[{DateTime.Now}] Done. Number of processed combinations: {processedCombinations}. Output:\r\n{path}");
@@ -85,8 +83,7 @@ namespace SumOfThreeCubesSolver.Solvers
         {
             if (combination.Where(x => x == 0).Count() >= 2)
                 return true;
-
-            var x = Math.Abs(combination.Aggregate(GCD));
+            
             return Math.Abs(combination.Aggregate(GCD)) <= 1;
         }
 
