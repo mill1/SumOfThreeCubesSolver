@@ -35,10 +35,9 @@ There are two reasons a solution cannot be found:
 2. The range defined by "start value" and "end value" is too small to find (a) solution(s).
 
 ***2**
+
 Next combination of arguments can result a large number of lines being generated in the output file:
 
 "print no solutions:true", "print from": missing, "print until": missing
 
-This combination leeds to a very large file when the arguments "start value" and "end value" cover a significant range.
-
-For example: "start value:-500", "end value:500" will result in 500³ + 500³ = 250.000.000 lines in the output file.
+This combination leeds to a very large file when the arguments "start value" and "end value" cover a significant range. For example: "start value:-500", "end value:500" will result in 500³ + 500³ = 250.000.000 lines in the output file.
