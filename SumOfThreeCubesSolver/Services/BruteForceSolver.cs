@@ -1,6 +1,7 @@
 ﻿using SumOfThreeCubesSolver.Interfaces;
 using SumOfThreeCubesSolver.Models;
 using SumOfThreeCubesSolver.Services;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SumOfThreeCubesSolver.Solvers
 {
@@ -20,6 +21,8 @@ namespace SumOfThreeCubesSolver.Solvers
         {
             _arguments = arguments;
 
+            CheckArguments(arguments);
+
             var permutations = GetKCombsWithRept(Enumerable.Range(_arguments.StartValue, ResolveRangeSize()), 3);
 
             Dictionary<double, List<SumOfThreeCubesResult>> dictionary = new();
@@ -32,6 +35,28 @@ namespace SumOfThreeCubesSolver.Solvers
             string path = _solutionsPrinter.Print(dictionary, _arguments);
             
             Console.WriteLine($"[{DateTime.Now}] Done. Number of processed combinations: {processedCombinations}. Output:\r\n{path}");
+        }
+
+        private void CheckArguments(Arguments arguments)
+        {
+            if (!_arguments.PrintNoSolutions)
+                return;
+
+            int numberOfLines = Math.Abs(_arguments.PrintUntil) + Math.Abs(_arguments.PrintFrom);
+
+            if (numberOfLines > _arguments.TextWarningThreshold)
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine($"The output text file will contain {numberOfLines} lines.\r\nAre you sure you want to continu? (yes/no)");
+                Console.WriteLine($"(Consult documentation to disable this warning. Current warning threshold: {_arguments.TextWarningThreshold})");
+                Console.ResetColor();
+
+                var answer = Console.ReadLine().Trim().ToLower();
+
+                if (answer != "yes" && answer != "y")
+                    throw new Exception("Process aborted by user");                    
+            }
+                
         }
 
         private int ResolveRangeSize()
