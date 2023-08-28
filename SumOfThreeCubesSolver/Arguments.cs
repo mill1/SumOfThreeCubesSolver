@@ -9,6 +9,7 @@
         public int PrintUntil { get; set; }
         public bool ProcessAnnullingSolutions { get; set; }
         public bool PrintNoSolutions { get; set; }
+        public int TextWarningThreshold { get; set; }
         public string Path { get; set; }
     }
 }

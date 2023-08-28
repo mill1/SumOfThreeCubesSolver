@@ -16,6 +16,7 @@ The program makes use of the following optional arguments:
 * "print from", int, value from which the solutions will be printed. Default: sum of three cubes of "start value" (e.g. -375 in case of -5)
 * "print until", int, value up to which the solutions will be printed. Default: sum of three cubes of "end value"
 * "print no solutions", skip printing values for which there are no solutions. Default: true ***1**
+* "text warning threshold", int, number of generated output lines from which a warning will be shown before proceeding. Default: 1000000 (file size:~30Mb) ***2**
 * "path", string, output folder for the text file. Default: _MyDocuments_ folder
 
 Command using all arguments:
@@ -32,3 +33,12 @@ None
 There are two reasons a solution cannot be found:
 1. No solution exists for n equals 4 or 5 modulo 9
 2. The range defined by "start value" and "end value" is too small to find (a) solution(s).
+
+***2**
+Next combination of arguments can result a large number of lines being generated in the output file:
+
+"print no solutions:true", "print from": missing, "print until": missing
+
+This combination leeds to a very large file when the arguments "start value" and "end value" cover a significant range.
+
+For example: "start value:-500", "end value:500" will result in 500³ + 500³ = 250.000.000 lines in the output file.
