@@ -2,7 +2,7 @@
   "profiles": {
     "SumOfThreeCubesSolver": {
       "commandName": "Project",
-      "commandLineArgs": "\"solver:brute force solver\" \"process annulling solutions:false\" \"print no solutions:true\""
+      "commandLineArgs": "\"solver:brute force solver\" \"process annulling solutions:false\" \"print from:-1000\" \"print until:1000\" \"print no solutions:true\""
     }
   }
 }

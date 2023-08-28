@@ -52,8 +52,8 @@ namespace SumOfThreeCubesSolver
 
         private static Arguments ResolveArguments(string[] args)
         {            
-            int startValue = ResolveValue(args, "start value", -10);
-            var endValue = ResolveValue(args, "end value", 10);
+            int startValue = ResolveValue(args, "start value", -100);
+            var endValue = ResolveValue(args, "end value", 100);
             var printFrom = ResolveArgument(args, "print from");
             var printUntil = ResolveArgument(args, "print until");
             var processAnnullingSolutions = ResolveArgument(args, "process annulling solutions");

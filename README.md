@@ -10,8 +10,8 @@ Inspired by the repo https://github.com/fleschutz/LSS of Markus Fleschutz.
 ## Command line arguments
 The program makes use of the following optional arguments:
 * "solver", string, determines which type of solver to use. Default value: "brute force solver"
-* "start value", int, value from which the three elements will be cubed. E.g. -5 means that the first combination to check will be -5³ + -5³ + -5³. Default: -10
-* "end value", int, value up to which the three elements will be cubed. Default: 10
+* "start value", int, value from which the three elements will be cubed. E.g. -5 means that the first combination to check will be -5³ + -5³ + -5³. Default: -100
+* "end value", int, value up to which the three elements will be cubed. Default: 100
 * "process annulling solutions", bool, skip combinations where the sum of two of the three uncubed elements is zero. F.i: -9³ + 2³ + 9³. Default: false
 * "print from", int, value from which the solutions will be printed. Default: sum of three cubes of "start value" (e.g. -375 in case of -5)
 * "print until", int, value up to which the solutions will be printed. Default: sum of three cubes of "end value"
