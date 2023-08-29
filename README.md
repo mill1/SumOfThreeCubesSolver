@@ -25,7 +25,7 @@ Command using all arguments:
 SumOfThreeCubesSolver.exe "solver:brute force solver" "start value:-100" "end value:100" "process annulling solutions:false" "print from:-1000" "print until:1000" "print no solutions:true" "text warning threshold:100000" "path:C:\Docs"
 `
 
-or via the [.NET CLI](https://learn.microsoft.com/en-us/dotnet/core/tools/):
+or via the [.NET CLI](https://learn.microsoft.com/en-us/dotnet/core/tools/) _([download .NET](https://dotnet.microsoft.com/en-us/download/dotnet))_:
 
 `
 cd [path to solution]\SumOfThreeCubesSolver
