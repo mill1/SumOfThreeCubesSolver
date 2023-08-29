@@ -1,7 +1,6 @@
 ﻿using SumOfThreeCubesSolver.Interfaces;
 using SumOfThreeCubesSolver.Models;
 using SumOfThreeCubesSolver.Services;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace SumOfThreeCubesSolver.Solvers
 {
@@ -21,7 +20,7 @@ namespace SumOfThreeCubesSolver.Solvers
         {
             _arguments = arguments;
 
-            CheckArguments(arguments);
+            CheckArguments();
 
             var permutations = GetKCombsWithRept(Enumerable.Range(_arguments.StartValue, ResolveRangeSize()), 3);
 
@@ -37,7 +36,7 @@ namespace SumOfThreeCubesSolver.Solvers
             Console.WriteLine($"[{DateTime.Now}] Done. Number of processed combinations: {processedCombinations}. Output:\r\n{path}");
         }
 
-        private void CheckArguments(Arguments arguments)
+        private void CheckArguments()
         {
             if (!_arguments.PrintNoSolutions)
                 return;
