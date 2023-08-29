@@ -52,8 +52,8 @@ namespace SumOfThreeCubesSolver
 
         private static Arguments ResolveArguments(string[] args)
         {            
-            int startValue = ResolveValue(args, "start value", -100);
-            int endValue = ResolveValue(args, "end value", 100);
+            int startValue = ResolveValue(args, "start value", -50);
+            int endValue = ResolveValue(args, "end value", 50);
             var printFrom = ResolveArgument(args, "print from");
             var printUntil = ResolveArgument(args, "print until");
             var processAnnullingSolutions = ResolveArgument(args, "process annulling solutions");
@@ -68,7 +68,7 @@ namespace SumOfThreeCubesSolver
                 PrintFrom = printFrom == null ? ResolveLimit(startValue) : int.Parse(printFrom),
                 PrintUntil = printUntil == null ? ResolveLimit(endValue) : int.Parse(printUntil),
                 ProcessAnnullingSolutions = processAnnullingSolutions == null ? false : bool.Parse(processAnnullingSolutions),
-                PrintNoSolutions = printNoSolutions == null ? true : bool.Parse(printNoSolutions),
+                PrintNoSolutions = printNoSolutions == null ? false : bool.Parse(printNoSolutions),
                 TextWarningThreshold = textWarningThreshold == null ? 1000000 : int.Parse(textWarningThreshold),
                 Path = ResolveArgument(args, "path") ?? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
             };
