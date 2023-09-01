@@ -75,19 +75,23 @@ namespace SumOfThreeCubesSolver.Solvers
                 if (IsPrimitiveCombination(combination))
                 {
                     var result = new SumOfThreeCubesResult(combination[0], combination[1], combination[2]);
-
-                    if (result.Sum >= _arguments.PrintFrom && result.Sum <= _arguments.PrintUntil)
-                    {
-                        List<SumOfThreeCubesResult> list;
-                        if (dictionary.TryGetValue(result.Sum, out list))
-                            list.Add(result);
-                        else
-                        {
-                            list = new List<SumOfThreeCubesResult> { result };
-                            dictionary.Add(result.Sum, list);
-                        }
-                    }
+                    ProcessResult(dictionary, result);
                     processedCombinations++;
+                }
+            }
+        }
+
+        private void ProcessResult(Dictionary<double, List<SumOfThreeCubesResult>> dictionary, SumOfThreeCubesResult result)
+        {
+            if (result.Sum >= _arguments.PrintFrom && result.Sum <= _arguments.PrintUntil)
+            {
+                List<SumOfThreeCubesResult> list;
+                if (dictionary.TryGetValue(result.Sum, out list))
+                    list.Add(result);
+                else
+                {
+                    list = new List<SumOfThreeCubesResult> { result };
+                    dictionary.Add(result.Sum, list);
                 }
             }
         }
